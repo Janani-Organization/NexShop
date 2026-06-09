@@ -31,7 +31,7 @@ spec:
               value: "root"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "root123"
-            - name: MONGO_URI
+            - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: mongodb-secret
@@ -44,3 +44,5 @@ spec:
               value: "guest"
             - name: SPRING_RABBITMQ_PASSWORD
               value: "guest"
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"

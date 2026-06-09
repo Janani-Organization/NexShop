@@ -12,6 +12,10 @@ spec:
       labels:
         app: eureka-server
     spec:
+      initContainers:
+        - name: wait-for-config-server
+          image: busybox:1.28
+          command: ['sh', '-c', 'until nc -z config-server 8888; do echo waiting for config-server; sleep 3; done;']
       containers:
         - name: eureka-server
           image: jananisivasankar/eureka-server:latest

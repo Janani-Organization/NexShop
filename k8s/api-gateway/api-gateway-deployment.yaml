@@ -12,6 +12,10 @@ spec:
       labels:
         app: api-gateway
     spec:
+      initContainers:
+        - name: wait-for-infra
+          image: busybox:1.28
+          command: ['sh', '-c', 'until nc -z config-server 8888 && nc -z eureka-server 8761; do echo waiting for infra; sleep 3; done;']
       containers:
         - name: api-gateway
           image: jananisivasankar/api-gateway:latest

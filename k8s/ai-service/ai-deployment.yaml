@@ -27,3 +27,10 @@ spec:
 
             - name: ZIPKIN_ENDPOINT
               value: "http://zipkin:9411/api/v2/spans"
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-uri
+            - name: OLLAMA_BASE_URL
+              value: "http://host.docker.internal:11434"
