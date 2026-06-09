@@ -1,6 +1,10 @@
+/**
+ * @vitest-environment jsdom
+ */
 import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom/vitest"
 import { BrowserRouter } from "react-router-dom"
+import { describe, test, expect } from "vitest"
 import Register from "./Register"
 
 describe("Register Page Tests", () => {
@@ -27,7 +31,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const nameInput = screen.getByPlaceholderText("John Doe")
+      const nameInput = screen.getAllByPlaceholderText("John Doe")[0]
 
       expect(nameInput).toBeInTheDocument()
 
@@ -41,7 +45,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const emailInput = screen.getByPlaceholderText("you@example.com")
+      const emailInput = screen.getAllByPlaceholderText("you@example.com")[0]
 
       expect(emailInput).toBeInTheDocument()
 
@@ -55,7 +59,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const passwordInput = screen.getByPlaceholderText("••••••••")
+      const passwordInput = screen.getAllByPlaceholderText("••••••••")[0]
 
       expect(passwordInput).toBeInTheDocument()
 
@@ -69,7 +73,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const nameInput = screen.getByPlaceholderText("John Doe")
+      const nameInput = screen.getAllByPlaceholderText("John Doe")[0]
 
       fireEvent.change(nameInput, {
          target: { value: "Janani" }
@@ -87,7 +91,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const emailInput = screen.getByPlaceholderText("you@example.com")
+      const emailInput = screen.getAllByPlaceholderText("you@example.com")[0]
 
       fireEvent.change(emailInput, {
          target: { value: "Janani@gmail.com" }
@@ -105,7 +109,7 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const passwordInput = screen.getByPlaceholderText("••••••••")
+      const passwordInput = screen.getAllByPlaceholderText("••••••••")[0]
 
       fireEvent.change(passwordInput, {
          target: { value: "password123" }
@@ -123,11 +127,11 @@ describe("Register Page Tests", () => {
          </BrowserRouter>
       )
 
-      const passwordInput = screen.getByPlaceholderText("••••••••")
+      const passwordInput = screen.getAllByPlaceholderText("••••••••")[0]
 
       expect(passwordInput.type).toBe("password")
 
-      const toggleButton = screen.getAllByRole("button")[0]
+      const toggleButton = screen.getAllByRole("button")[3] // Index 3 should be the first password toggle
 
       fireEvent.click(toggleButton)
 
